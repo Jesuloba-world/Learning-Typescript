@@ -4,9 +4,11 @@ add = (n1, n2) => {
     return n1 + n2;
 };
 class Person {
-    constructor(name) {
-        this.name = name;
+    constructor(n) {
         this.age = 24;
+        if (n) {
+            this.name = n;
+        }
     }
     greet(phrase) {
         console.log(`${phrase} ${this.name}`);

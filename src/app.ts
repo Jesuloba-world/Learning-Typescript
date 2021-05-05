@@ -124,16 +124,36 @@
 // 	userName: "Must start with a capital character!",
 // };
 
-// Function overloading
-type Combinable = number | string;
+// // Function overloading
+// type Combinable = number | string;
 
-function add(a: number, b: number): number;
-function add(a: string, b: string): string;
-function add(a: Combinable, b: Combinable) {
-	if (typeof a === "string" || typeof b === "string") {
-		return a.toString() + b.toString();
-	}
-	return a + b;
-}
+// function add(a: number, b: number): number;
+// function add(a: string, b: string): string;
+// function add(a: Combinable, b: Combinable) {
+// 	if (typeof a === "string" || typeof b === "string") {
+// 		return a.toString() + b.toString();
+// 	}
+// 	return a + b;
+// }
 
-const result = add("Max", " Smith");
+// const result = add("Max", " Smith");
+
+// // Optional chaining
+// // used when you are not sure if some properties will be present
+// // in the data gotten from the database or backend
+
+// const fetchedUserData = {
+// 	id: "u1",
+// 	name: "Max",
+// 	job: { title: "CEO", description: "my own company" },
+// };
+
+// console.log(fetchedUserData?.job?.title);
+
+// // Nullish coalescing
+
+// const userInput = null;
+
+// const storedData = userInput ?? "Default";
+
+// console.log(storedData);

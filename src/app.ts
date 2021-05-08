@@ -85,3 +85,25 @@ textStorage.addItem("Max");
 textStorage.addItem("Manu");
 textStorage.removeItem("Manu");
 console.log(textStorage.getItems());
+
+/**
+ *  Generic Utility Types
+ */
+
+interface Goal {
+	title: string;
+	description: string;
+	completeUntil: Date;
+}
+
+// the Partial type
+function createGoal(title: string, description: string, date: Date): Goal {
+	let goal: Partial<Goal> = {};
+	goal.title = title;
+	goal.description = description;
+	goal.completeUntil = date;
+	return goal as Goal;
+}
+
+// the Readonly type
+const names: Readonly<string[]> = ["Jesuloba", "John", "Needle"];

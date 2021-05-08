@@ -45,3 +45,16 @@ function countAndDescribe<T extends Lenghty>(element: T): [T, string] {
 }
 
 console.log(countAndDescribe("hi there!"));
+
+/**
+ *  The Keyof Constraint
+ */
+
+function extractAndConvert<T extends object, U extends keyof T>(
+	obj: T,
+	key: U
+) {
+	return obj[key];
+}
+
+extractAndConvert({ name: "Max" }, "name");

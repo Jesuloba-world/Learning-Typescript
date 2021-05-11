@@ -36,10 +36,37 @@ const pers = new Person();
 console.log(pers);
 
 // property decorators
-
 function Log(target: any, propertyName: string) {
 	console.log("property decorator!");
 	console.log(target, propertyName);
+}
+
+// accessor decorators
+function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
+	console.log("accessor decorator");
+	console.log(target);
+	console.log(name);
+	console.log(descriptor);
+}
+
+// method decorators
+function Log3(
+	target: any,
+	name: string | Symbol,
+	descriptor: PropertyDescriptor
+) {
+	console.log("method decorator");
+	console.log(target);
+	console.log(name);
+	console.log(descriptor);
+}
+
+// parameter decorators
+function Log4(target: any, name: string, position: number) {
+	console.log("parameter decorator");
+	console.log(target);
+	console.log(name);
+	console.log(position);
 }
 
 class product {
@@ -47,6 +74,7 @@ class product {
 	title: string;
 	private _price: number;
 
+	@Log2
 	set price(val: number) {
 		if (val > 0) {
 			this._price = val;
@@ -60,7 +88,8 @@ class product {
 		this._price = p;
 	}
 
-	getPriceWithTax(tax: number) {
+	@Log3
+	getPriceWithTax(@Log4 tax: number) {
 		return this._price * (1 + tax);
 	}
 }

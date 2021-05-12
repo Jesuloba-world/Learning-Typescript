@@ -10,14 +10,22 @@ function Logger(logString: string) {
 }
 
 function WithTemplate(template: string, hookId: string) {
-	return function (constructor: any) {
-		console.log("rendering template");
-		const hookEl = document.getElementById(hookId);
-		const p = new constructor();
-		if (hookEl) {
-			hookEl.innerHTML = template;
-			document.querySelector("h1")!.textContent = `my name is ${p.name}`;
-		}
+	return function <T extends { new (...args: any[]): { name: string } }>(
+		originalConstructor: T
+	) {
+		return class extends originalConstructor {
+			constructor(..._: any[]) {
+				super();
+				console.log("rendering template");
+				const hookEl = document.getElementById(hookId);
+				if (hookEl) {
+					hookEl.innerHTML = template;
+					document.querySelector(
+						"h1"
+					)!.textContent = `my name is ${this.name}`;
+				}
+			}
+		};
 	};
 }
 
